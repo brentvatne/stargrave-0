@@ -5,6 +5,7 @@ var {
   Animation,
   StyleSheet,
   View,
+  Text,
   TouchableOpacity,
 } = React;
 
@@ -82,3 +83,5 @@ var modalStyles = StyleSheet.create({
     alignSelf: 'stretch',
   }
 });
+
+module.exports = Modal;
