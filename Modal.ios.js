@@ -19,15 +19,23 @@ var Modal = React.createClass({
   },
 
   render() {
+    var closeButton;
+
+    if (this.props.hideCloseButton !== true) {
+      closeButton = (
+        <View style={modalStyles.closeButton}>
+          <TouchableOpacity onPress={this.props.onClose}>
+            <Text style={modalStyles.closeButtonText}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+
     if (this.props.isVisible) {
       return (
         <View ref="this" style={modalStyles.container}>
           <View style={modalStyles.backdrop} />
-          <View style={modalStyles.closeButton}>
-            <TouchableOpacity onPress={this.props.onClose}>
-              <Text style={modalStyles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
+          {closeButton}
 
           <View style={modalStyles.modal}>
             {this.props.children}
