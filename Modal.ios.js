@@ -16,11 +16,20 @@ var Modal = React.createClass({
     hideCloseButton: PropTypes.bool,
     customCloseButton: PropTypes.node,
     onClose: PropTypes.func,
+    customShowHandler: PropTypes.func
   },
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevProps.isVisible && this.props.isVisible) {
-      Animation.startAnimation(this.refs['this'], 300, 0, 'easeInOutQuad', {opacity: 1});
+  componentDidUpdate(prevProps) {
+    var { isVisible, customShowHandler } = this.props;
+    var wasVisible = prevProps.isVisible;
+    var nodeRef = this.refs['this'];
+
+    if (!wasVisible && isVisible) {
+      if (customShowHandler) {
+          return customShowHandler(nodeRef);
+      } else {
+          Animation.startAnimation(nodeRef, 300, 0, 'easeInOutQuad', {opacity: 1});
+      }
     }
   },
 

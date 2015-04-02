@@ -77,6 +77,7 @@ Component accepts several self-descriptive properties:
 - **`isVisible`** _(Bool)_
 - **`onClose`** _(Function)_
 - **`customCloseButton`** _(React Component)_
+- **`customShowHandler`** _(Function)_ - use React's [Animation](http://facebook.github.io/react-native/docs/animation.html#content) API in order to show the modal.
 
 ---
 
