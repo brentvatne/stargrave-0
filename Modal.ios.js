@@ -7,38 +7,44 @@ var {
   View,
   Text,
   TouchableOpacity,
+  PropTypes
 } = React;
 
-var merge = require('merge');
-
 var Modal = React.createClass({
+  propTypes: {
+    isVisible: PropTypes.bool,
+    hideCloseButton: PropTypes.bool,
+    onClose: PropTypes.func
+  },
+
   componentDidUpdate(prevProps, prevState) {
-    if (!prevProps.isVisible && this.props.isVisible == true) {
+    if (!prevProps.isVisible && this.props.isVisible) {
       Animation.startAnimation(this.refs['this'], 300, 0, 'easeInOutQuad', {opacity: 1});
     }
   },
 
   render() {
+    var { hideCloseButton, isVisible, onClose, children } = this.props;
     var closeButton;
 
-    if (this.props.hideCloseButton !== true) {
+    if (!hideCloseButton && onClose) {
       closeButton = (
         <View style={modalStyles.closeButton}>
-          <TouchableOpacity onPress={this.props.onClose}>
+          <TouchableOpacity onPress={onClose}>
             <Text style={modalStyles.closeButtonText}>Close</Text>
           </TouchableOpacity>
         </View>
-      )
+      );
     }
 
-    if (this.props.isVisible) {
+    if (isVisible) {
       return (
         <View ref="this" style={modalStyles.container}>
           <View style={modalStyles.backdrop} />
           {closeButton}
 
           <View style={modalStyles.modal}>
-            {this.props.children}
+            {React.Children.map(children, React.addons.cloneWithProps)}
           </View>
         </View>
       );

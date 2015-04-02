@@ -11,6 +11,7 @@ contributions are very welcome.
 3. At the bottom of your app, add the `<Modal>` element and use its
    `isVisible` prop to toggle visibility. It needs to be at the bottom
    so that it appears above all other components when it is visible.
+4. Do not forget to include `RCTAnimation` library from `node_modules/react-native/Libraries/Animation` into your XCode `Libraries` folder ([more on linking libraries](http://facebook.github.io/react-native/docs/linking-libraries.html#content))
 
 ## Example
 
