@@ -7,38 +7,61 @@ var {
   View,
   Text,
   TouchableOpacity,
+  PropTypes
 } = React;
 
-var merge = require('merge');
-
 var Modal = React.createClass({
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevProps.isVisible && this.props.isVisible == true) {
-      Animation.startAnimation(this.refs['this'], 300, 0, 'easeInOutQuad', {opacity: 1});
+  propTypes: {
+    isVisible: PropTypes.bool,
+    hideCloseButton: PropTypes.bool,
+    customCloseButton: PropTypes.node,
+    onClose: PropTypes.func,
+    customShowHandler: PropTypes.func
+  },
+
+  componentDidUpdate(prevProps) {
+    var { isVisible, customShowHandler } = this.props;
+    var wasVisible = prevProps.isVisible;
+    var nodeRef = this.refs['this'];
+
+    if (!wasVisible && isVisible) {
+      if (customShowHandler) {
+          return customShowHandler(nodeRef);
+      } else {
+          Animation.startAnimation(nodeRef, 300, 0, 'easeInOutQuad', {opacity: 1});
+      }
     }
   },
 
   render() {
-    var closeButton;
+    var {
+      hideCloseButton,
+      customCloseButton,
+      isVisible,
+      onClose,
+      children
+    } = this.props;
 
-    if (this.props.hideCloseButton !== true) {
+    var closeButton;
+    if (customCloseButton) {
+      closeButton = React.addons.cloneWithProps(customCloseButton, null);
+    } else if (!hideCloseButton && onClose) {
       closeButton = (
         <View style={modalStyles.closeButton}>
-          <TouchableOpacity onPress={this.props.onClose}>
+          <TouchableOpacity onPress={onClose}>
             <Text style={modalStyles.closeButtonText}>Close</Text>
           </TouchableOpacity>
         </View>
-      )
+      );
     }
 
-    if (this.props.isVisible) {
+    if (isVisible) {
       return (
         <View ref="this" style={modalStyles.container}>
           <View style={modalStyles.backdrop} />
           {closeButton}
-
           <View style={modalStyles.modal}>
-            {this.props.children}
+            {React.Children.map(children, React.addons.cloneWithProps)}
           </View>
         </View>
       );
