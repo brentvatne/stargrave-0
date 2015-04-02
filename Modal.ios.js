@@ -14,7 +14,8 @@ var Modal = React.createClass({
   propTypes: {
     isVisible: PropTypes.bool,
     hideCloseButton: PropTypes.bool,
-    onClose: PropTypes.func
+    customCloseButton: PropTypes.node,
+    onClose: PropTypes.func,
   },
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,10 +25,18 @@ var Modal = React.createClass({
   },
 
   render() {
-    var { hideCloseButton, isVisible, onClose, children } = this.props;
-    var closeButton;
+    var {
+      hideCloseButton,
+      customCloseButton,
+      isVisible,
+      onClose,
+      children
+    } = this.props;
 
-    if (!hideCloseButton && onClose) {
+    var closeButton;
+    if (customCloseButton) {
+      closeButton = React.addons.cloneWithProps(customCloseButton, null);
+    } else if (!hideCloseButton && onClose) {
       closeButton = (
         <View style={modalStyles.closeButton}>
           <TouchableOpacity onPress={onClose}>
@@ -42,7 +51,6 @@ var Modal = React.createClass({
         <View ref="this" style={modalStyles.container}>
           <View style={modalStyles.backdrop} />
           {closeButton}
-
           <View style={modalStyles.modal}>
             {React.Children.map(children, React.addons.cloneWithProps)}
           </View>
