@@ -4,6 +4,8 @@ A `<Modal>` component for react-native. This is still very much a work
 in progress and only handles the simplest of cases, ideas and
 contributions are very welcome.
 
+![Example code result](https://raw.githubusercontent.com/brentvatne/react-native-modal/master/example.png)
+
 ## Add it to your project
 
 1. Run `npm install react-native-modal --save`
@@ -65,17 +67,18 @@ var styles = StyleSheet.create({
 AppRegistry.registerComponent('App', () => App);
 ```
 
+Also take a look on [react-native-login](https://github.com/brentvatne/react-native-login) for an example usage.
+
 ## Props
 
 Component accepts several self-descriptive properties:
 
-- **`hideCloseButton`** (Bool)
-- **`isVisible`** (Bool)
-- **`onClose`** (Function)
-- **`customCloseButton`** (React Component)
+- **`hideCloseButton`** _(Bool)_
+- **`isVisible`** _(Bool)_
+- **`onClose`** _(Function)_
+- **`customCloseButton`** _(React Component)_
 
-## Example
+---
 
-See [react-native-login](https://github.com/brentvatne/react-native-login) for an example, where it is used to produce this:
+**MIT Licensed**
 
-![Example code result](https://raw.githubusercontent.com/brentvatne/react-native-modal/master/example.png)
