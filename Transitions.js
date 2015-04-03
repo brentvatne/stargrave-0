@@ -43,7 +43,7 @@ var Transitions = Object.assign(Mixin, {
           }
 
           // Custom onEnd callback
-          if (options.onEnd) onEnd();
+          if (options.onEnd) options.onEnd();
         });
       }),
     });
