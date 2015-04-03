@@ -25,43 +25,43 @@ var Modal = require('react-native-modal');
 var { AppRegistry, StyleSheet, View, Text } = React;
 
 class App extends React.Component {
-    constructor() {
-        this.state = {
-          isModalOpen: false
-        };
-    }
+  constructor() {
+    this.state = {
+      isModalOpen: false
+    };
+  }
 
-    openModal() {
-        this.setState({isModalOpen: true});
-    }
+  openModal() {
+    this.setState({isModalOpen: true});
+  }
 
-    closeModal() {
-        this.setState({isModalOpen: false});
-    }
+  closeModal() {
+    this.setState({isModalOpen: false});
+  }
 
-    render() {
-        return (
-            <View style={styles.page}>
-                <Text onPress={() => this.openModal()}>
-                    Open Modal.
-                </Text>
-                <Modal isVisible={this.state.isModalOpen} onClose={() => this.closeModal()}>
-                    <Text>Hello world!</Text>
-                </Modal>
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View style={styles.page}>
+        <Text onPress={() => this.openModal()}>
+          Open Modal.
+        </Text>
+        <Modal isVisible={this.state.isModalOpen} onClose={() => this.closeModal()}>
+          <Text>Hello world!</Text>
+        </Modal>
+      </View>
+    );
+  }
 }
 
 var styles = StyleSheet.create({
-    page: {
-        flex: 1,
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        top: 0
-    }
+  page: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0
+  }
 });
 
 AppRegistry.registerComponent('App', () => App);
@@ -77,7 +77,8 @@ Component accepts several self-descriptive properties:
 - **`isVisible`** _(Bool)_
 - **`onClose`** _(Function)_
 - **`customCloseButton`** _(React Component)_
-- **`customShowHandler`** _(Function)_ - use React's [Animation](http://facebook.github.io/react-native/docs/animation.html#content) API in order to show the modal.
+- **`customShowHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Modal.ios.js#L52-L65) API in order to show the modal.
+- **`customHideHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Modal.ios.js#L52-L65) API in order to hide the modal.
 
 ---
 
