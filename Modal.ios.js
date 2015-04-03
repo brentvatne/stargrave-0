@@ -9,14 +9,14 @@ var {
   PropTypes,
 } = React;
 
-var TweenState = require('react-tween-state');
+var Transitions = require('./Transitions');
 var styles = require('./Style');
-var merge = require('merge');
 
 var Modal = React.createClass({
-  mixins: [TweenState.Mixin],
+  mixins: [Transitions.Mixin],
+
   statics: {
-    easingTypes: TweenState.easingTypes,
+    transitionEasings: Transitions.Easings,
   },
 
   propTypes: {
@@ -26,12 +26,6 @@ var Modal = React.createClass({
     customCloseButton: PropTypes.node,
     customShowHandler: PropTypes.func,
     customHideHandler: PropTypes.func,
-  },
-
-  getInitialState() {
-    return {
-      isTransitioning: false,
-    }
   },
 
   componentWillReceiveProps(nextProps) {
@@ -47,37 +41,6 @@ var Modal = React.createClass({
         hideHandler(this.transition);
       }
     }
-  },
-
-  transition(property, options) {
-    this.setState({isTransitioning: true});
-
-    this.tweenState(property, {
-      easing: options.easing || Modal.easingTypes.easeInOutQuad,
-      duration: options.duration || 300,
-      beginValue: (typeof options.begin === 'undefined' ? this.state[property] : options.begin),
-      endValue: options.end,
-      onEnd: (() => {
-        if (this.state.tweenQueue.length === 1) this.setState({isTransitioning: false})
-        if (options.onEnd) onEnd();
-      }),
-    });
-  },
-
-  transitionStyles(propertySet) {
-    if (this.state.tweenQueue.length === 0) return {};
-    if (typeof propertySet === 'undefined') propertySet = [];
-    var result = {};
-
-    this.state.tweenQueue.forEach((tween) => {
-      var property = tween.stateName;
-      if (propertySet.length === 0 || propertySet.indexOf(property) > -1) {
-        var value = this.getTweeningValue(property);
-        result[property] = value;
-      }
-    });
-
-    return result;
   },
 
   render() {
@@ -104,7 +67,7 @@ var Modal = React.createClass({
 
     if (isVisible || this.state.isTransitioning) {
       return (
-        <View ref="this" style={[styles.container, this.transitionStyles()]}>
+        <View style={[styles.container, this.transitionStyles()]}>
           <View style={styles.backdrop} />
           {closeButton}
           <View style={styles.modal}>
