@@ -2,35 +2,82 @@
 
 var React = require('react-native');
 var {
-  Animation,
   StyleSheet,
   View,
   Text,
   TouchableOpacity,
-  PropTypes
+  PropTypes,
 } = React;
 
+var TweenState = require('react-tween-state');
+var styles = require('./Style');
+var merge = require('merge');
+
 var Modal = React.createClass({
+  mixins: [TweenState.Mixin],
+  statics: {
+    easingTypes: TweenState.easingTypes,
+  },
+
   propTypes: {
     isVisible: PropTypes.bool,
     hideCloseButton: PropTypes.bool,
-    customCloseButton: PropTypes.node,
     onClose: PropTypes.func,
-    customShowHandler: PropTypes.func
+    customCloseButton: PropTypes.node,
+    customShowHandler: PropTypes.func,
+    customHideHandler: PropTypes.func,
   },
 
-  componentDidUpdate(prevProps) {
-    var { isVisible, customShowHandler } = this.props;
-    var wasVisible = prevProps.isVisible;
-    var nodeRef = this.refs['this'];
+  getInitialState() {
+    return {
+      isTransitioning: false,
+    }
+  },
 
-    if (!wasVisible && isVisible) {
-      if (customShowHandler) {
-          return customShowHandler(nodeRef);
+  componentWillReceiveProps(nextProps) {
+    var willBeVisible = nextProps.isVisible;
+    var isVisible = this.props.isVisible;
+
+    if (willBeVisible !== isVisible) {
+      if (willBeVisible) {
+        var showHandler = this.props.customShowHandler || ((t) => t('opacity', {duration: 300, begin: 0, end: 1}))
+        showHandler(this.transition);
       } else {
-          Animation.startAnimation(nodeRef, 300, 0, 'easeInOutQuad', {opacity: 1});
+        var hideHandler = this.props.customHideHandler || ((t) => t('opacity', {duration: 300, end: 0}))
+        hideHandler(this.transition);
       }
     }
+  },
+
+  transition(property, options) {
+    this.setState({isTransitioning: true});
+
+    this.tweenState(property, {
+      easing: options.easing || Modal.easingTypes.easeInOutQuad,
+      duration: options.duration || 300,
+      beginValue: (typeof options.begin === 'undefined' ? this.state[property] : options.begin),
+      endValue: options.end,
+      onEnd: (() => {
+        if (this.state.tweenQueue.length === 1) this.setState({isTransitioning: false})
+        if (options.onEnd) onEnd();
+      }),
+    });
+  },
+
+  transitionStyles(propertySet) {
+    if (this.state.tweenQueue.length === 0) return {};
+    if (typeof propertySet === 'undefined') propertySet = [];
+    var result = {};
+
+    this.state.tweenQueue.forEach((tween) => {
+      var property = tween.stateName;
+      if (propertySet.length === 0 || propertySet.indexOf(property) > -1) {
+        var value = this.getTweeningValue(property);
+        result[property] = value;
+      }
+    });
+
+    return result;
   },
 
   render() {
@@ -47,20 +94,20 @@ var Modal = React.createClass({
       closeButton = React.addons.cloneWithProps(customCloseButton, null);
     } else if (!hideCloseButton && onClose) {
       closeButton = (
-        <View style={modalStyles.closeButton}>
+        <View style={styles.closeButton}>
           <TouchableOpacity onPress={onClose}>
-            <Text style={modalStyles.closeButtonText}>Close</Text>
+            <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>
         </View>
       );
     }
 
-    if (isVisible) {
+    if (isVisible || this.state.isTransitioning) {
       return (
-        <View ref="this" style={modalStyles.container}>
-          <View style={modalStyles.backdrop} />
+        <View ref="this" style={[styles.container, this.transitionStyles()]}>
+          <View style={styles.backdrop} />
           {closeButton}
-          <View style={modalStyles.modal}>
+          <View style={styles.modal}>
             {React.Children.map(children, React.addons.cloneWithProps)}
           </View>
         </View>
@@ -69,50 +116,6 @@ var Modal = React.createClass({
       return <View />;
     }
   },
-});
-
-var modalStyles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'transparent',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  backdrop: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#000000',
-    opacity: 0.5,
-  },
-  closeButton: {
-    position: 'absolute',
-    borderColor: '#ffffff',
-    borderRadius: 2,
-    borderWidth: 1,
-    right: 20,
-    top: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-  },
-  closeButtonText: {
-    color: '#ffffff',
-  },
-  modal: {
-    margin: 20,
-    backgroundColor: '#ffffff',
-    borderRadius: 3,
-    padding: 20,
-    alignSelf: 'stretch',
-  }
 });
 
 module.exports = Modal;
