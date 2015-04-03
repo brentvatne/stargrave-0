@@ -4,7 +4,7 @@ A `<Modal>` component for react-native. This is still very much a work
 in progress and only handles the simplest of cases, ideas and
 contributions are very welcome.
 
-![Example code result](https://raw.githubusercontent.com/brentvatne/react-native-modal/master/example.png)
+![Demo](https://raw.githubusercontent.com/brentvatne/react-native-modal/master/demo.gif)
 
 ## Add it to your project
 
