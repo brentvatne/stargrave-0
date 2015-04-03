@@ -6,6 +6,7 @@ var {
   View,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   PropTypes,
 } = React;
 
@@ -22,10 +23,19 @@ var Modal = React.createClass({
   propTypes: {
     isVisible: PropTypes.bool,
     hideCloseButton: PropTypes.bool,
+    hideBackdrop: PropTypes.bool,
     onClose: PropTypes.func,
+    onPressBackdrop: PropTypes.func,
     customCloseButton: PropTypes.node,
     customShowHandler: PropTypes.func,
     customHideHandler: PropTypes.func,
+  },
+
+
+  getDefaultProps() {
+    return {
+      onPressBackdrop: () => {}
+    }
   },
 
   componentWillReceiveProps(nextProps) {
@@ -43,20 +53,17 @@ var Modal = React.createClass({
     }
   },
 
-  render() {
+  renderCloseButton() {
     var {
-      hideCloseButton,
       customCloseButton,
-      isVisible,
+      hideCloseButton,
       onClose,
-      children
     } = this.props;
 
-    var closeButton;
     if (customCloseButton) {
-      closeButton = React.addons.cloneWithProps(customCloseButton, null);
+      return React.addons.cloneWithProps(customCloseButton, null);
     } else if (!hideCloseButton && onClose) {
-      closeButton = (
+      return (
         <View style={styles.closeButton}>
           <TouchableOpacity onPress={onClose}>
             <Text style={styles.closeButtonText}>Close</Text>
@@ -64,12 +71,36 @@ var Modal = React.createClass({
         </View>
       );
     }
+  },
+
+  renderBackdrop() {
+    var {
+      onPressBackdrop,
+      hideBackdrop,
+    } = this.props;
+
+    if (hideBackdrop) {
+      return <View />;
+    } else {
+      return (
+        <TouchableWithoutFeedback onPress={onPressBackdrop}>
+          <View style={styles.backdrop} />
+        </TouchableWithoutFeedback>
+      )
+    }
+  },
+
+  render() {
+    var {
+      isVisible,
+      children
+    } = this.props;
 
     if (isVisible || this.state.isTransitioning) {
       return (
         <View style={[styles.container, this.transitionStyles()]}>
-          <View style={styles.backdrop} />
-          {closeButton}
+          {this.renderBackdrop()}
+          {this.renderCloseButton()}
           <View style={styles.modal}>
             {React.Children.map(children, React.addons.cloneWithProps)}
           </View>

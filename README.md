@@ -73,8 +73,10 @@ Also take a look on [react-native-login](https://github.com/brentvatne/react-nat
 Component accepts several self-descriptive properties:
 
 - **`hideCloseButton`** _(Bool)_
+- **`hideBackdrop`** _(Bool)_
 - **`isVisible`** _(Bool)_
 - **`onClose`** _(Function)_
+- **`onPressBackdrop`** _(Function)_ - callback to be fired when the user taps on the backdrop
 - **`customCloseButton`** _(React Component)_
 - **`customShowHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Transitions.js) API in order to show the modal. [See example](https://github.com/brentvatne/react-native-login/blob/master/App/Screens/LoginScreen.js#L84)
 - **`customHideHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Transitions.js) API in order to hide the modal. [See example](https://github.com/brentvatne/react-native-login/blob/master/App/Screens/LoginScreen.js#L84)
