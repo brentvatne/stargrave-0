@@ -13,7 +13,6 @@ contributions are very welcome.
 3. At the bottom of your app, add the `<Modal>` element and use its
    `isVisible` prop to toggle visibility. It needs to be at the bottom
    so that it appears above all other components when it is visible.
-4. Do not forget to include `RCTAnimation` library from `node_modules/react-native/Libraries/Animation` into your XCode `Libraries` folder ([more on linking libraries](http://facebook.github.io/react-native/docs/linking-libraries.html#content))
 
 ## Usage
 
@@ -77,8 +76,10 @@ Component accepts several self-descriptive properties:
 - **`isVisible`** _(Bool)_
 - **`onClose`** _(Function)_
 - **`customCloseButton`** _(React Component)_
-- **`customShowHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Modal.ios.js#L52-L65) API in order to show the modal.
-- **`customHideHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Modal.ios.js#L52-L65) API in order to hide the modal.
+- **`customShowHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Modal.ios.js#L52-L65) API in order to show the modal. [See example](https://github.com/brentvatne/react-native-login/blob/master/App/Screens/LoginScreen.js#L84)
+- **`customHideHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Modal.ios.js#L52-L65) API in order to hide the modal. [See example](https://github.com/brentvatne/react-native-login/blob/master/App/Screens/LoginScreen.js#L84)
+
+
 
 ---
 
