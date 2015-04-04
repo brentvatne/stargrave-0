@@ -1,6 +1,6 @@
 'use strict';
 
-var { Mixin, easingTypes, } = require('react-tween-state');
+var { Mixin, easingTypes } = require('react-tween-state');
 
 var Transitions = Object.assign(Mixin, {
   getInitialState() {
@@ -8,14 +8,14 @@ var Transitions = Object.assign(Mixin, {
       isTransitioning: false,
       tweenQueue: [],
       tweenProperties: [],
-    }
+    };
   },
 
   transition(property, options) {
     this.setState({isTransitioning: true});
 
     // Add the property to the list of tweenProperties if it isn't already there
-    if (this.state.tweenProperties.indexOf(property) == -1) {
+    if (this.state.tweenProperties.indexOf(property) === -1) {
       // Ugly, pushing it directly, but if I clone and setState then only one property
       // will be registered at a time and it interferes with multiple tweens
       this.state.tweenProperties.push(property);
@@ -34,7 +34,7 @@ var Transitions = Object.assign(Mixin, {
         requestAnimationFrame(() => {
           // If all tweens are done, finish transitioning
           if (this.state.tweenQueue.length === 0) {
-            this.setState({isTransitioning: false})
+            this.setState({isTransitioning: false});
           }
 
           // Option to reset the state value to the initial value
@@ -47,14 +47,18 @@ var Transitions = Object.assign(Mixin, {
           }
 
           // Custom onEnd callback
-          if (options.onEnd) options.onEnd();
+          if (options.onEnd) {
+            options.onEnd();
+          }
         });
       }),
     });
   },
 
   transitionStyles(propertySet) {
-    if (typeof propertySet === 'undefined') propertySet = [];
+    if (typeof propertySet === 'undefined') {
+      propertySet = [];
+    }
     var result = {};
 
     this.state.tweenProperties.forEach((property) => {
@@ -72,7 +76,10 @@ var Transitions = Object.assign(Mixin, {
     });
 
     return result;
-  },
-})
+  }
+});
 
-module.exports = {Mixin: Transitions, Easings: easingTypes};
+module.exports = {
+  Mixin: Transitions,
+  Easings: easingTypes
+};

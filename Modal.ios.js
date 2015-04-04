@@ -2,16 +2,16 @@
 
 var React = require('react-native');
 var {
-  StyleSheet,
   View,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  PropTypes,
+  PropTypes
 } = React;
 
 var Transitions = require('./Transitions');
 var styles = require('./Style');
+var noop = () => {};
 
 var Modal = React.createClass({
   mixins: [Transitions.Mixin],
@@ -34,8 +34,8 @@ var Modal = React.createClass({
 
   getDefaultProps() {
     return {
-      onPressBackdrop: () => {}
-    }
+      onPressBackdrop: noop
+    };
   },
 
   componentWillReceiveProps(nextProps) {
@@ -44,10 +44,10 @@ var Modal = React.createClass({
 
     if (willBeVisible !== isVisible) {
       if (willBeVisible) {
-        var showHandler = this.props.customShowHandler || ((t) => t('opacity', {duration: 300, begin: 0, end: 1}))
+        var showHandler = this.props.customShowHandler || ((t) => t('opacity', {duration: 300, begin: 0, end: 1}));
         showHandler(this.transition);
       } else {
-        var hideHandler = this.props.customHideHandler || ((t) => t('opacity', {duration: 300, end: 0}))
+        var hideHandler = this.props.customHideHandler || ((t) => t('opacity', {duration: 300, end: 0}));
         hideHandler(this.transition);
       }
     }
@@ -57,7 +57,7 @@ var Modal = React.createClass({
     var {
       customCloseButton,
       hideCloseButton,
-      onClose,
+      onClose
     } = this.props;
 
     if (customCloseButton) {
@@ -76,7 +76,7 @@ var Modal = React.createClass({
   renderBackdrop() {
     var {
       onPressBackdrop,
-      hideBackdrop,
+      hideBackdrop
     } = this.props;
 
     if (hideBackdrop) {
@@ -86,7 +86,7 @@ var Modal = React.createClass({
         <TouchableWithoutFeedback onPress={onPressBackdrop}>
           <View style={styles.backdrop} />
         </TouchableWithoutFeedback>
-      )
+      );
     }
   },
 
