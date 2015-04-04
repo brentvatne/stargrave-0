@@ -40,14 +40,18 @@ var Modal = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     var willBeVisible = nextProps.isVisible;
-    var isVisible = this.props.isVisible;
+    var {
+      isVisible,
+      customShowHandler,
+      customHideHandler
+    } = this.props;
 
     if (willBeVisible !== isVisible) {
       if (willBeVisible) {
-        var showHandler = this.props.customShowHandler || ((t) => t('opacity', {duration: 300, begin: 0, end: 1}));
+        var showHandler = customShowHandler || ((t) => t('opacity', {duration: 300, begin: 0, end: 1}));
         showHandler(this.transition);
       } else {
-        var hideHandler = this.props.customHideHandler || ((t) => t('opacity', {duration: 300, end: 0}));
+        var hideHandler = customHideHandler || ((t) => t('opacity', {duration: 300, end: 0}));
         hideHandler(this.transition);
       }
     }

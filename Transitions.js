@@ -33,13 +33,13 @@ var Transitions = Object.assign(Mixin, {
         // Perform on next tick because animations are removed from tweenQueue after onEnd is called
         requestAnimationFrame(() => {
           // If all tweens are done, finish transitioning
-          if (this.state.tweenQueue.length === 0) {
+          if (!this.state.tweenQueue.length) {
             this.setState({isTransitioning: false});
           }
 
           // Option to reset the state value to the initial value
           if (options.reset) {
-            if (options.reset === true) {
+            if (options.reset) {
               this.state[property] = begin;
             } else {
               this.state[property] = options.reset;
@@ -65,7 +65,7 @@ var Transitions = Object.assign(Mixin, {
       if (propertySet.length === 0 || propertySet.indexOf(property) > -1) {
         var value, tweeningValue = this.getTweeningValue(property);
 
-        if (typeof tweeningValue == 'undefined' || tweeningValue == null) {
+        if (typeof tweeningValue === 'undefined' || tweeningValue === null) {
           value = this.state[property];
         } else {
           value = tweeningValue;
