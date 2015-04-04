@@ -16,24 +16,22 @@ var Transitions = Object.assign(Mixin, {
 
     // Add the property to the list of tweenProperties if it isn't already there
     if (this.state.tweenProperties.indexOf(property) == -1) {
-      var tweenProperties = this.state.tweenProperties.slice();
-      tweenProperties.push(property);
-      this.setState({tweenProperties: tweenProperties});
+      // Ugly, pushing it directly, but if I clone and setState then only one property
+      // will be registered at a time and it interferes with multiple tweens
+      this.state.tweenProperties.push(property);
     }
 
     // If no initial value is given, use the current value in the state
     var begin = (typeof options.begin === 'undefined' ? this.state[property] : options.begin);
-
     this.tweenState(property, {
       easing: options.easing || easingTypes.easeInOutQuad,
       duration: options.duration || 300,
       delay: options.delay,
       beginValue: begin,
-      endValue: options.end,
+      endValue:  options.end,
       onEnd: (() => {
         // Perform on next tick because animations are removed from tweenQueue after onEnd is called
         requestAnimationFrame(() => {
-
           // If all tweens are done, finish transitioning
           if (this.state.tweenQueue.length === 0) {
             this.setState({isTransitioning: false})
