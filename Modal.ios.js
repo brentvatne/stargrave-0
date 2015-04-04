@@ -6,7 +6,7 @@ var {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  PropTypes
+  PropTypes,
 } = React;
 
 var Transitions = require('./Transitions');
@@ -34,7 +34,7 @@ var Modal = React.createClass({
 
   getDefaultProps() {
     return {
-      onPressBackdrop: noop
+      onPressBackdrop: noop,
     };
   },
 
@@ -43,7 +43,7 @@ var Modal = React.createClass({
     var {
       isVisible,
       customShowHandler,
-      customHideHandler
+      customHideHandler,
     } = this.props;
 
     if (willBeVisible !== isVisible) {
@@ -61,7 +61,7 @@ var Modal = React.createClass({
     var {
       customCloseButton,
       hideCloseButton,
-      onClose
+      onClose,
     } = this.props;
 
     if (customCloseButton) {
@@ -80,12 +80,10 @@ var Modal = React.createClass({
   renderBackdrop() {
     var {
       onPressBackdrop,
-      hideBackdrop
+      hideBackdrop,
     } = this.props;
 
-    if (hideBackdrop) {
-      return <View />;
-    } else {
+    if (!hideBackdrop) {
       return (
         <TouchableWithoutFeedback onPress={onPressBackdrop}>
           <View style={styles.backdrop} />
@@ -97,7 +95,7 @@ var Modal = React.createClass({
   render() {
     var {
       isVisible,
-      children
+      children,
     } = this.props;
 
     if (isVisible || this.state.isTransitioning) {

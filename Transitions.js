@@ -81,5 +81,5 @@ var Transitions = Object.assign(Mixin, {
 
 module.exports = {
   Mixin: Transitions,
-  Easings: easingTypes
+  Easings: easingTypes,
 };
