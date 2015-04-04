@@ -1,12 +1,18 @@
 {
   "name": "react-native-modal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A <Modal /> component for react-native",
   "main": "Modal.ios.js",
   "author": "Brent Vatne <brentvatne@gmail.com> (https://github.com/brentvatne)",
   "contributors": [
-    {"name": "Dmitri Voronianski", "email": "dmitri.voronianski@gmail.com"},
-    {"name": "Marco Munizaga", "email": "marco@marcopolo.io"}
+    {
+      "name": "Dmitri Voronianski",
+      "email": "dmitri.voronianski@gmail.com"
+    },
+    {
+      "name": "Marco Munizaga",
+      "email": "marco@marcopolo.io"
+    }
   ],
   "repository": {
     "type": "git",
