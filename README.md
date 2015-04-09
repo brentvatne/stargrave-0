@@ -109,6 +109,7 @@ Component accepts several self-descriptive properties:
 - **`customCloseButton`** _(React Component)_
 - **`customShowHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Transitions.js) API in order to show the modal. [See example](https://github.com/brentvatne/react-native-login/blob/master/App/Screens/LoginScreen.js#L84)
 - **`customHideHandler`** _(Function)_ - uses [a react-tween-state wrapper](https://github.com/brentvatne/react-native-modal/blob/master/Transitions.js) API in order to hide the modal. [See example](https://github.com/brentvatne/react-native-login/blob/master/App/Screens/LoginScreen.js#L84)
+
 ---
 
 **MIT Licensed**
