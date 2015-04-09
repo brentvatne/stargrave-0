@@ -13,6 +13,7 @@ var {
 } = React;
 
 var Transitions = require('./Transitions');
+var ModalBackdrop = require('./ModalBackdrop.ios');
 var merge = require('merge');
 var styles = require('./Style');
 var noop = () => {};
@@ -96,31 +97,38 @@ var Modal = React.createClass({
     }
   },
 
-  renderBackdrop() {
-    var {
-      onPressBackdrop,
-      hideBackdrop,
-    } = this.props;
-
-    if (!hideBackdrop) {
-      return (
-        <TouchableWithoutFeedback onPress={onPressBackdrop}>
-          <View style={styles.backdrop} />
-        </TouchableWithoutFeedback>
-      );
-    }
-  },
-
   renderBody() {
     return (
-      <View style={[styles.container, this.transitionStyles()]}>
-        {this.renderBackdrop()}
+      <View>
         {this.renderCloseButton()}
         <View style={styles.modal}>
           {React.Children.map(this.props.children, React.addons.cloneWithProps)}
         </View>
       </View>
     );
+  },
+
+  renderModal() {
+    var {
+      onPressBackdrop,
+      hideBackdrop,
+    } = this.props;
+
+    if (hideBackdrop) {
+      return (
+        <View style={[styles.container, this.transitionStyles()]}>
+          {this.renderBody()}
+        </View>
+      );
+    } else {
+      return (
+        <TouchableWithoutFeedback onPress={onPressBackdrop}>
+          <ModalBackdrop style={[styles.container, this.transitionStyles()]}>
+            {this.renderBody()}
+          </ModalBackdrop>
+        </TouchableWithoutFeedback>
+      );
+    }
   },
 
   render() {
@@ -131,9 +139,9 @@ var Modal = React.createClass({
 
     if (isVisible || this.state.isTransitioning) {
       if (forceToFront) {
-        return (<RNModal visible={true} style={styles.container}>{this.renderBody()}</RNModal>);
+        return (<RNModal visible={true} style={styles.container}>{this.renderModal()}</RNModal>);
       } else {
-        return (<View style={styles.container}>{this.renderBody()}</View>);
+        return (<View style={styles.container}>{this.renderModal()}</View>);
       }
     } else {
       return <View />;
