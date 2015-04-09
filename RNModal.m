@@ -1,5 +1,4 @@
 #import "RNModal.h"
-#import "RCTLog.h"
 #import "RCTUIManager.h"
 #import "RCTView.h"
 #import "RCTTouchHandler.h"
