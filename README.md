@@ -85,7 +85,7 @@ var App = React.createClass({
         <Text onPress={() => this.openModal()}>
           Open Modal.
         </Text>
-        <Modal isVisible={this.state.isModalOpen} onClose={() => this.closeModal()}>
+        <Modal backdropType="blur" isVisible={this.state.isModalOpen} onClose={() => this.closeModal()}>
           <Text>Hello world!</Text>
         </Modal>
       </View>
@@ -102,7 +102,8 @@ Component accepts several self-descriptive properties:
 
 - **`forceToFront`** _(Bool)_ - if `true`, the modal will use a new `UIWindow` that will appear above `NavigatorIOS` and the status bar, but not alerts. [Demo of this here](https://raw.githubusercontent.com/brentvatne/react-native-modal/master/demo-layered.gif).
 - **`hideCloseButton`** _(Bool)_
-- **`hideBackdrop`** _(Bool)_
+- **`backdropType`** _(String)_ `plain`, `none`, or `blur`. Default is `plain`.
+- **`backdropBlur`** _(String)_ If `backdropType` is `blur`, this can be either `dark`, `light`, or `extra-light`. Default is `light`.
 - **`isVisible`** _(Bool)_
 - **`onClose`** _(Function)_
 - **`onPressBackdrop`** _(Function)_ - callback to be fired when the user taps on the backdrop
