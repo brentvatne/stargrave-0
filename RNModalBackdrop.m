@@ -5,6 +5,9 @@
 - (id)init
 {
   self = [super init];
+  if (self) {
+    [self setEffect:@"light"];
+  }
   return self;
 }
 
@@ -28,8 +31,6 @@
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
   } else if ([effect isEqualToString:@"dark"]) {
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-  } else {
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
   }
 
   self.visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
