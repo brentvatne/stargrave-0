@@ -15,7 +15,7 @@ var {
 var Transitions = require('./Transitions');
 var ModalBackdrop = require('./ModalBackdrop.ios');
 var merge = require('merge');
-var styles = require('./Style');
+var DefaultStyles = require('./Style');
 var noop = () => {};
 
 var ModalMixin = {
@@ -38,6 +38,7 @@ var Modal = React.createClass({
   statics: {
     transitionEasings: Transitions.Easings,
     Mixin: ModalMixin,
+    DefaultStyles: DefaultStyles,
   },
 
   propTypes: {
@@ -66,6 +67,8 @@ var Modal = React.createClass({
       customHideHandler,
     } = this.props;
 
+    var styles = this.props.style || DefaultStyles;
+
     if (willBeVisible !== isVisible) {
       if (willBeVisible) {
         var showHandler = customShowHandler || ((t) => t('opacity', {duration: 300, begin: 0, end: 1}));
@@ -84,6 +87,8 @@ var Modal = React.createClass({
       onClose,
     } = this.props;
 
+    var styles = this.props.style || DefaultStyles;
+
     if (customCloseButton) {
       return React.addons.cloneWithProps(customCloseButton, null);
     } else if (!hideCloseButton && onClose) {
@@ -98,6 +103,8 @@ var Modal = React.createClass({
   },
 
   renderBody() {
+    var styles = this.props.style || DefaultStyles;
+
     return (
       <View>
         {this.renderCloseButton()}
@@ -115,6 +122,7 @@ var Modal = React.createClass({
       backdropBlur,
     } = this.props;
 
+    var styles = this.props.style || DefaultStyles;
     var body = this.renderBody();
 
     if (typeof backdropType == 'undefined' || backdropType == null || backdropType == 'plain') {
@@ -148,6 +156,8 @@ var Modal = React.createClass({
       isVisible,
       forceToFront,
     } = this.props;
+
+    var styles = this.props.style || DefaultStyles;
 
     if (isVisible || this.state.isTransitioning) {
       if (forceToFront) {
