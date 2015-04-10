@@ -10,4 +10,6 @@ RCT_EXPORT_MODULE();
   return [[RNModalBackdrop alloc] init];
 }
 
+RCT_EXPORT_VIEW_PROPERTY(effect, NSString);
+
 @end

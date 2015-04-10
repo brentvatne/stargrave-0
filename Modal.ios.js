@@ -43,7 +43,7 @@ var Modal = React.createClass({
   propTypes: {
     isVisible: PropTypes.bool,
     hideCloseButton: PropTypes.bool,
-    hideBackdrop: PropTypes.bool,
+    backdropType: PropTypes.string,
     onClose: PropTypes.func,
     onPressBackdrop: PropTypes.func,
     customCloseButton: PropTypes.node,
@@ -111,20 +111,32 @@ var Modal = React.createClass({
   renderModal() {
     var {
       onPressBackdrop,
-      hideBackdrop,
+      backdropType,
+      backdropBlur,
     } = this.props;
 
-    if (hideBackdrop) {
+    var body = this.renderBody();
+
+    if (typeof backdropType == 'undefined' || backdropType == null || backdropType == 'plain') {
       return (
         <View style={[styles.container, this.transitionStyles()]}>
-          {this.renderBody()}
+          <TouchableWithoutFeedback onPress={onPressBackdrop}>
+            <View style={styles.backdrop} />
+          </TouchableWithoutFeedback>
+          {body}
+        </View>
+      );
+    } else if (backdropType === 'none') {
+      return (
+        <View style={[styles.container, this.transitionStyles()]}>
+          {body}
         </View>
       );
     } else {
       return (
         <TouchableWithoutFeedback onPress={onPressBackdrop}>
-          <ModalBackdrop style={[styles.container, this.transitionStyles()]}>
-            {this.renderBody()}
+          <ModalBackdrop effect={backdropBlur} style={[styles.container, this.transitionStyles()]}>
+            {body}
           </ModalBackdrop>
         </TouchableWithoutFeedback>
       );
@@ -139,9 +151,13 @@ var Modal = React.createClass({
 
     if (isVisible || this.state.isTransitioning) {
       if (forceToFront) {
-        return (<RNModal visible={true} style={styles.container}>{this.renderModal()}</RNModal>);
+        return (
+          <RNModal visible={true} style={styles.container}>{this.renderModal()}</RNModal>
+        );
       } else {
-        return (<View style={styles.container}>{this.renderModal()}</View>);
+        return (
+          <View style={styles.container}>{this.renderModal()}</View>
+        );
       }
     } else {
       return <View />;
