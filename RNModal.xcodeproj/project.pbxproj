@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BBD49E3F1AC8DEF000610F8E /* RNModal.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD49E3A1AC8DEF000610F8E /* RNModal.m */; };
 		BBD49E401AC8DEF000610F8E /* RNModalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD49E3C1AC8DEF000610F8E /* RNModalManager.m */; };
+		BBDBB78A1AD750EA00B72F43 /* RNModalBackdrop.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDBB7871AD750EA00B72F43 /* RNModalBackdrop.m */; };
+		BBDBB78B1AD750EA00B72F43 /* RNModalBackdropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDBB7891AD750EA00B72F43 /* RNModalBackdropManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +31,10 @@
 		BBD49E3A1AC8DEF000610F8E /* RNModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNModal.m; sourceTree = "<group>"; };
 		BBD49E3B1AC8DEF000610F8E /* RNModalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNModalManager.h; sourceTree = "<group>"; };
 		BBD49E3C1AC8DEF000610F8E /* RNModalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNModalManager.m; sourceTree = "<group>"; };
+		BBDBB7861AD750EA00B72F43 /* RNModalBackdrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNModalBackdrop.h; sourceTree = "<group>"; };
+		BBDBB7871AD750EA00B72F43 /* RNModalBackdrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNModalBackdrop.m; sourceTree = "<group>"; };
+		BBDBB7881AD750EA00B72F43 /* RNModalBackdropManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNModalBackdropManager.h; sourceTree = "<group>"; };
+		BBDBB7891AD750EA00B72F43 /* RNModalBackdropManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNModalBackdropManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				BBDBB7861AD750EA00B72F43 /* RNModalBackdrop.h */,
+				BBDBB7871AD750EA00B72F43 /* RNModalBackdrop.m */,
+				BBDBB7881AD750EA00B72F43 /* RNModalBackdropManager.h */,
+				BBDBB7891AD750EA00B72F43 /* RNModalBackdropManager.m */,
 				BBD49E391AC8DEF000610F8E /* RNModal.h */,
 				BBD49E3A1AC8DEF000610F8E /* RNModal.m */,
 				BBD49E3B1AC8DEF000610F8E /* RNModalManager.h */,
@@ -118,7 +128,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBD49E3F1AC8DEF000610F8E /* RNModal.m in Sources */,
+				BBDBB78B1AD750EA00B72F43 /* RNModalBackdropManager.m in Sources */,
 				BBD49E401AC8DEF000610F8E /* RNModalManager.m in Sources */,
+				BBDBB78A1AD750EA00B72F43 /* RNModalBackdrop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
