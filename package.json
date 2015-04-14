@@ -1,6 +1,6 @@
 {
   "name": "react-native-modal",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "A <Modal /> component for react-native",
   "main": "Modal.ios.js",
   "author": "Brent Vatne <brentvatne@gmail.com> (https://github.com/brentvatne)",
