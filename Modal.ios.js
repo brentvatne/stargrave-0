@@ -1,7 +1,13 @@
+/**
+ * @providesModule Modal
+ * @flow
+ */
+
 'use strict';
 
 var createReactIOSNativeComponentClass = require('createReactIOSNativeComponentClass');
 var ReactIOSViewAttributes = require('ReactIOSViewAttributes');
+var merge = require('merge');
 
 var React = require('react-native');
 var {
@@ -13,9 +19,9 @@ var {
 } = React;
 
 var Transitions = require('./Transitions');
-var ModalBackdrop = require('./ModalBackdrop.ios');
-var merge = require('merge');
 var DefaultStyles = require('./Style');
+var Overlay = require('react-native-overlay');
+var BlurView = require('react-native-blur').BlurView;
 var noop = () => {};
 
 var ModalMixin = {
@@ -53,13 +59,19 @@ var Modal = React.createClass({
     forceToFront: PropTypes.bool,
   },
 
-  getDefaultProps() {
+  getDefaultProps(): any {
     return {
+      isVisible: false,
+      hideCloseButton: false,
+      onClose: noop,
       onPressBackdrop: noop,
+      backdropType: 'plain',
+      backdropBlur: 'light',
+      forceToFront: false,
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps:any) {
     var willBeVisible = nextProps.isVisible;
     var {
       isVisible,
@@ -67,14 +79,15 @@ var Modal = React.createClass({
       customHideHandler,
     } = this.props;
 
-    var styles = this.props.style || DefaultStyles;
-
     if (willBeVisible !== isVisible) {
+      var fadeIn = (t) => t('opacity', {duration: 300, begin: 0, end: 1,});
+      var fadeOut = (t) => t('opacity', {duration: 300, end: 0,});
+
       if (willBeVisible) {
-        var showHandler = customShowHandler || ((t) => t('opacity', {duration: 300, begin: 0, end: 1}));
+        var showHandler = customShowHandler || fadeIn;
         showHandler(this.transition);
       } else {
-        var hideHandler = customHideHandler || ((t) => t('opacity', {duration: 300, end: 0}));
+        var hideHandler = customHideHandler || fadeOut;
         hideHandler(this.transition);
       }
     }
@@ -125,7 +138,7 @@ var Modal = React.createClass({
     var styles = this.props.style || DefaultStyles;
     var body = this.renderBody();
 
-    if (typeof backdropType == 'undefined' || backdropType == null || backdropType == 'plain') {
+    if (backdropType == 'plain') {
       return (
         <View style={[styles.container, this.transitionStyles()]}>
           <TouchableWithoutFeedback onPress={onPressBackdrop}>
@@ -143,41 +156,34 @@ var Modal = React.createClass({
     } else {
       return (
         <TouchableWithoutFeedback onPress={onPressBackdrop}>
-          <ModalBackdrop effect={backdropBlur} style={[styles.container, this.transitionStyles()]}>
+          <BlurView blurType={backdropBlur} style={[styles.container, this.transitionStyles()]}>
             {body}
-          </ModalBackdrop>
+          </BlurView>
         </TouchableWithoutFeedback>
       );
     }
   },
 
   render() {
-    var {
-      isVisible,
-      forceToFront,
-    } = this.props;
-
     var styles = this.props.style || DefaultStyles;
+    var { isVisible, forceToFront, } = this.props;
 
-    if (isVisible || this.state.isTransitioning) {
-      if (forceToFront) {
-        return (
-          <RNModal visible={true} style={styles.container}>{this.renderModal()}</RNModal>
-        );
-      } else {
-        return (
-          <View style={styles.container}>{this.renderModal()}</View>
-        );
-      }
-    } else {
+    if (!isVisible && !this.state.isTransitioning) {
       return <View />;
     }
-  },
-});
 
-var RNModal = createReactIOSNativeComponentClass({
-  validAttributes: merge(ReactIOSViewAttributes.UIView, {visible: true}),
-  uiViewClassName: 'RNModal',
+    if (forceToFront) {
+      return (
+        <Overlay isVisible={true} aboveStatusBar={true} style={styles.container}>
+          {this.renderModal()}
+        </Overlay>
+      );
+    } else {
+      return (
+        <View style={styles.container}>{this.renderModal()}</View>
+      );
+    }
+  },
 });
 
 module.exports = Modal;

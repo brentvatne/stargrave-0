@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "react-native": "^0.3.10",
-    "react-tween-state": "^0.0.5"
+    "react-tween-state": "^0.0.5",
+    "react-native-overlay": "0.1.4",
+    "react-native-blur": "0.4.0"
   }
 }
