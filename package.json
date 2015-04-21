@@ -1,6 +1,6 @@
 {
   "name": "react-native-modal",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "A <Modal /> component for react-native",
   "main": "Modal.ios.js",
   "author": "Brent Vatne <brentvatne@gmail.com> (https://github.com/brentvatne)",
@@ -13,6 +13,14 @@
       "name": "Marco Munizaga",
       "email": "marco@marcopolo.io"
     }
+  ],
+  "files": [
+    "RNModal.xcodeproj",
+    "Modal.ios.js",
+    "package.json",
+    "README.md",
+    "Style.js",
+    "Transitions.js"
   ],
   "repository": {
     "type": "git",
