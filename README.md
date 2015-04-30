@@ -12,11 +12,10 @@ contributions are very welcome.
 1. Run `npm install react-native-modal --save`
 2. Open your project in XCode, right click on `Libraries` and click `Add
    Files to "Your Project Name"`
-[(Screenshot)](http://url.brentvatne.ca/jQp8) then
-[(Screenshot)](http://url.brentvatne.ca/1gqUD) (use the RNModal project
-rather than the one pictured in screenshot).
+[(Screenshot)](http://d.pr/i/13lpE) then choose the `RNModal.xcodeproj`
+[(Screenshot)](http://d.pr/i/19w57) .
 3. Add `libRNModal.a` to `Build Phases -> Link Binary With Libraries`
-   [(Screenshot)](http://url.brentvatne.ca/g9Wp).
+   [(Screenshot)](http://d.pr/i/1a9zi).
 3. `var Modal = require('react-native-modal');`
 4. At the bottom of your app, add the `<Modal>` element and use its
    `isVisible` prop to toggle visibility. It needs to be at the bottom
