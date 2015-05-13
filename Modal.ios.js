@@ -57,6 +57,7 @@ var Modal = React.createClass({
     customShowHandler: PropTypes.func,
     customHideHandler: PropTypes.func,
     forceToFront: PropTypes.bool,
+    containerPointerEvents: PropTypes.string,
   },
 
   getDefaultProps(): any {
@@ -68,6 +69,7 @@ var Modal = React.createClass({
       backdropType: 'plain',
       backdropBlur: 'light',
       forceToFront: false,
+      containerPointerEvents: 'auto',
     };
   },
 
@@ -121,7 +123,7 @@ var Modal = React.createClass({
     return (
       <View>
         {this.renderCloseButton()}
-        <View style={styles.modal}>
+        <View style={styles.modal} pointerEvents={this.props.containerPointerEvents}>
           {React.Children.map(this.props.children, React.addons.cloneWithProps)}
         </View>
       </View>

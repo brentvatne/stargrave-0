@@ -106,6 +106,7 @@ Component accepts several self-descriptive properties:
 - **`hideCloseButton`** _(Bool)_
 - **`backdropType`** _(String)_ `plain`, `none`, or `blur`. Default is `plain`.
 - **`backdropBlur`** _(String)_ If `backdropType` is `blur`, this can be either `dark`, `light`, or `extra-light`. Default is `light`. (thanks @kureev for [react-native-blur](https://github.com/Kureev/react-native-blur)!) [Demo here](https://raw.githubusercontent.com/brentvatne/react-native-modal/master/demo-blur.png).
+- **`containerPointerEvents`** _(String)_ `box-none`, `none`, `box-only`, `auto`. Default is `auto`. Set to `box-none` to trigger the `onPressBackdrop` callback when the modal body is touched. [See pointerEvents](https://facebook.github.io/react-native/docs/view.html#pointerevents).
 - **`isVisible`** _(Bool)_
 - **`onClose`** _(Function)_
 - **`onPressBackdrop`** _(Function)_ - callback to be fired when the user taps on the backdrop
