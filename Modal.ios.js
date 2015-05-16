@@ -120,14 +120,33 @@ var Modal = React.createClass({
   renderBody() {
     var styles = this.props.style || DefaultStyles;
 
+    var responderProps = this.extractResponderProps();
+
     return (
-      <View>
+      <View {...responderProps}>
         {this.renderCloseButton()}
         <View style={styles.modal} pointerEvents={this.props.containerPointerEvents}>
           {React.Children.map(this.props.children, React.addons.cloneWithProps)}
         </View>
       </View>
     );
+  },
+
+  extractResponderProps() {
+    var responderProps = {};
+    if (this.props.onMoveShouldSetResponder) responderProps.onMoveShouldSetResponder = this.props.onMoveShouldSetResponder;
+    if (this.props.onMoveShouldSetResponderCapture) responderProps.onMoveShouldSetResponderCapture = this.props.onMoveShouldSetResponderCapture;
+    if (this.props.onResponderEnd) responderProps.onResponderEnd = this.props.onResponderEnd;
+    if (this.props.onResponderGrant) responderProps.onResponderGrant = this.props.onResponderGrant;
+    if (this.props.onResponderMove) responderProps.onResponderMove = this.props.onResponderMove;
+    if (this.props.onResponderReject) responderProps.onResponderReject = this.props.onResponderReject;
+    if (this.props.onResponderRelease) responderProps.onResponderRelease = this.props.onResponderRelease;
+    if (this.props.onResponderStart) responderProps.onResponderStart = this.props.onResponderStart;
+    if (this.props.onResponderTerminate) responderProps.onResponderTerminate = this.props.onResponderTerminate;
+    if (this.props.onResponderTerminationRequest) responderProps.onResponderTerminationRequest = this.props.onResponderTerminationRequest;
+    if (this.props.onStartShouldSetResponder) responderProps.onStartShouldSetResponder = this.props.onStartShouldSetResponder;
+    if (this.props.onStartShouldSetResponderCapture) responderProps.onStartShouldSetResponderCapture = this.props.onStartShouldSetResponderCapture;
+    return responderProps;
   },
 
   renderModal() {
