@@ -132,7 +132,7 @@ var Modal = React.createClass({
     );
   },
 
-  extractResponderProps() {
+  extractResponderProps():any {
     var responderProps = {};
     if (this.props.onMoveShouldSetResponder) responderProps.onMoveShouldSetResponder = this.props.onMoveShouldSetResponder;
     if (this.props.onMoveShouldSetResponderCapture) responderProps.onMoveShouldSetResponderCapture = this.props.onMoveShouldSetResponderCapture;
