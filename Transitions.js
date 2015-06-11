@@ -39,11 +39,7 @@ var Transitions = Object.assign(Mixin, {
 
           // Option to reset the state value to the initial value
           if (options.reset) {
-            if (options.reset) {
-              this.state[property] = begin;
-            } else {
-              this.state[property] = options.reset;
-            }
+            this.state[property] = begin;
           }
 
           // Custom onEnd callback
