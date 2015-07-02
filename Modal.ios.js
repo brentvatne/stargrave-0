@@ -55,7 +55,12 @@ var Modal = React.createClass({
     customShowHandler: PropTypes.func,
     customHideHandler: PropTypes.func,
     forceToFront: PropTypes.bool,
-    containerPointerEvents: PropTypes.string,
+    containerPointerEvents: PropTypes.oneOf([
+      'box-none',
+      'none',
+      'box-only',
+      'auto',
+    ]),
   },
 
   getDefaultProps(): any {
