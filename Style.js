@@ -23,24 +23,24 @@ module.exports = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
+    width: 60,
     borderColor: '#ffffff',
     borderRadius: 2,
     borderWidth: 1,
     right: 20,
     top: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   closeButtonText: {
     color: '#ffffff',
   },
   modal: {
-    margin: 20,
+    marginTop: 70,
+    marginBottom: 20,
+    marginHorizontal: 20,
     backgroundColor: '#ffffff',
     borderRadius: 3,
     padding: 20,
   }
 });
-

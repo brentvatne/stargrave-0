@@ -111,11 +111,11 @@ var Modal = React.createClass({
       return React.addons.cloneWithProps(customCloseButton, null);
     } else if (!hideCloseButton && onClose) {
       return (
-        <View style={styles.closeButton}>
-          <TouchableOpacity onPress={onClose}>
+        <TouchableOpacity onPress={onClose}>
+          <View style={styles.closeButton}>
             <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
       );
     }
   },
