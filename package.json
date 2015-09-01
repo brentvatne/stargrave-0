@@ -1,6 +1,6 @@
 {
   "name": "react-native-modal",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "A <Modal /> component for react-native",
   "main": "Modal.ios.js",
   "author": "Brent Vatne <brentvatne@gmail.com> (https://github.com/brentvatne)",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "react-tween-state": "^0.0.5",
-    "react-native-overlay": "^0.2.2",
+    "react-native-overlay": "^0.3.0",
     "react-native-blur": ">=0.5.2"
   },
   "peerDependencies": {
