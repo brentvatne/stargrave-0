@@ -5,8 +5,6 @@
 
 'use strict';
 
-var merge = require('merge');
-
 var React = require('react-native');
 var {
   View,
@@ -34,7 +32,7 @@ var ModalMixin = {
   closeModal() {
     this.setState({isModalOpen: false});
   },
-}
+};
 
 var Modal = React.createClass({
   mixins: [Transitions.Mixin],
