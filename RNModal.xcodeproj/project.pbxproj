@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BBC83B931ADCDF8B00C92225 /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC83B901ADCDF8B00C92225 /* BlurView.m */; };
-		BBC83B941ADCDF8B00C92225 /* BlurViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC83B921ADCDF8B00C92225 /* BlurViewManager.m */; };
+		9BC2FF371C48A955001CB0ED /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2FF341C48A955001CB0ED /* BlurView.m */; };
+		9BC2FF381C48A955001CB0ED /* BlurViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2FF361C48A955001CB0ED /* BlurViewManager.m */; };
+		9BC2FF551C48AAF8001CB0ED /* VibrancyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2FF511C48AAF8001CB0ED /* VibrancyView.m */; };
+		9BC2FF561C48AAF8001CB0ED /* VibrancyViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2FF541C48AAF8001CB0ED /* VibrancyViewManager.m */; };
 		BBC83BDB1ADD7F1400C92225 /* RNClickThroughWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC83BD61ADD7F1400C92225 /* RNClickThroughWindow.m */; };
 		BBC83BDC1ADD7F1400C92225 /* RNOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC83BD81ADD7F1400C92225 /* RNOverlay.m */; };
 		BBC83BDD1ADD7F1400C92225 /* RNOverlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC83BDA1ADD7F1400C92225 /* RNOverlayManager.m */; };
@@ -28,10 +30,14 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNModal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNModal.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBC83B8F1ADCDF8B00C92225 /* BlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlurView.h; path = "node_modules/react-native-blur/RNBlur/BlurView.h"; sourceTree = "<group>"; };
-		BBC83B901ADCDF8B00C92225 /* BlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlurView.m; path = "node_modules/react-native-blur/RNBlur/BlurView.m"; sourceTree = "<group>"; };
-		BBC83B911ADCDF8B00C92225 /* BlurViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlurViewManager.h; path = "node_modules/react-native-blur/RNBlur/BlurViewManager.h"; sourceTree = "<group>"; };
-		BBC83B921ADCDF8B00C92225 /* BlurViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlurViewManager.m; path = "node_modules/react-native-blur/RNBlur/BlurViewManager.m"; sourceTree = "<group>"; };
+		9BC2FF331C48A955001CB0ED /* BlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlurView.h; path = "node_modules/react-native-blur/ios/BlurView.h"; sourceTree = "<group>"; };
+		9BC2FF341C48A955001CB0ED /* BlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlurView.m; path = "node_modules/react-native-blur/ios/BlurView.m"; sourceTree = "<group>"; };
+		9BC2FF351C48A955001CB0ED /* BlurViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlurViewManager.h; path = "node_modules/react-native-blur/ios/BlurViewManager.h"; sourceTree = "<group>"; };
+		9BC2FF361C48A955001CB0ED /* BlurViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlurViewManager.m; path = "node_modules/react-native-blur/ios/BlurViewManager.m"; sourceTree = "<group>"; };
+		9BC2FF511C48AAF8001CB0ED /* VibrancyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VibrancyView.m; path = "node_modules/react-native-blur/ios/VibrancyView.m"; sourceTree = "<group>"; };
+		9BC2FF521C48AAF8001CB0ED /* VibrancyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VibrancyView.h; path = "node_modules/react-native-blur/ios/VibrancyView.h"; sourceTree = "<group>"; };
+		9BC2FF531C48AAF8001CB0ED /* VibrancyViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VibrancyViewManager.h; path = "node_modules/react-native-blur/ios/VibrancyViewManager.h"; sourceTree = "<group>"; };
+		9BC2FF541C48AAF8001CB0ED /* VibrancyViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VibrancyViewManager.m; path = "node_modules/react-native-blur/ios/VibrancyViewManager.m"; sourceTree = "<group>"; };
 		BBC83BD51ADD7F1400C92225 /* RNClickThroughWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNClickThroughWindow.h; path = "node_modules/react-native-overlay/RNClickThroughWindow.h"; sourceTree = "<group>"; };
 		BBC83BD61ADD7F1400C92225 /* RNClickThroughWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNClickThroughWindow.m; path = "node_modules/react-native-overlay/RNClickThroughWindow.m"; sourceTree = "<group>"; };
 		BBC83BD71ADD7F1400C92225 /* RNOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNOverlay.h; path = "node_modules/react-native-overlay/RNOverlay.h"; sourceTree = "<group>"; };
@@ -70,10 +76,14 @@
 		BBC83B8E1ADCDF7100C92225 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BBC83B8F1ADCDF8B00C92225 /* BlurView.h */,
-				BBC83B901ADCDF8B00C92225 /* BlurView.m */,
-				BBC83B911ADCDF8B00C92225 /* BlurViewManager.h */,
-				BBC83B921ADCDF8B00C92225 /* BlurViewManager.m */,
+				9BC2FF511C48AAF8001CB0ED /* VibrancyView.m */,
+				9BC2FF521C48AAF8001CB0ED /* VibrancyView.h */,
+				9BC2FF531C48AAF8001CB0ED /* VibrancyViewManager.h */,
+				9BC2FF541C48AAF8001CB0ED /* VibrancyViewManager.m */,
+				9BC2FF331C48A955001CB0ED /* BlurView.h */,
+				9BC2FF341C48A955001CB0ED /* BlurView.m */,
+				9BC2FF351C48A955001CB0ED /* BlurViewManager.h */,
+				9BC2FF361C48A955001CB0ED /* BlurViewManager.m */,
 				BBC83BD51ADD7F1400C92225 /* RNClickThroughWindow.h */,
 				BBC83BD61ADD7F1400C92225 /* RNClickThroughWindow.m */,
 				BBC83BD71ADD7F1400C92225 /* RNOverlay.h */,
@@ -141,10 +151,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBC83BDD1ADD7F1400C92225 /* RNOverlayManager.m in Sources */,
+				9BC2FF371C48A955001CB0ED /* BlurView.m in Sources */,
+				9BC2FF551C48AAF8001CB0ED /* VibrancyView.m in Sources */,
 				BBC83BDC1ADD7F1400C92225 /* RNOverlay.m in Sources */,
+				9BC2FF561C48AAF8001CB0ED /* VibrancyViewManager.m in Sources */,
 				BBC83BDB1ADD7F1400C92225 /* RNClickThroughWindow.m in Sources */,
-				BBC83B931ADCDF8B00C92225 /* BlurView.m in Sources */,
-				BBC83B941ADCDF8B00C92225 /* BlurViewManager.m in Sources */,
+				9BC2FF381C48A955001CB0ED /* BlurViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
