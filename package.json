@@ -1,8 +1,8 @@
 {
   "name": "react-native-modal",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A <Modal /> component for react-native",
-  "main": "Modal.ios.js",
+  "main": "index.js",
   "author": "Brent Vatne <brentvatne@gmail.com> (https://github.com/brentvatne)",
   "contributors": [
     {
@@ -14,24 +14,17 @@
       "email": "marco@marcopolo.io"
     }
   ],
+  "scripts": {
+    "postinstall": "node warn.js"
+  },
   "files": [
-    "RNModal.xcodeproj",
-    "Modal.ios.js",
-    "package.json",
+    "index.js",
+    "warn.js",
     "README.md",
-    "Style.js",
-    "Transitions.js"
+    "package.json"
   ],
   "repository": {
     "type": "git",
     "url": "git@github.com:brentvatne/react-native-modal.git"
-  },
-  "dependencies": {
-    "react-tween-state": "^0.0.5",
-    "react-native-overlay": "^0.3.0",
-    "react-native-blur": ">=0.5.2"
-  },
-  "peerDependencies": {
-    "react-native": ">=0.4.3"
   }
 }
